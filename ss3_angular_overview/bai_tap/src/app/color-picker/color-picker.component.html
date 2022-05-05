@@ -1,0 +1,10 @@
+<h2>Color picker</h2>
+
+<div>
+  <label>Move to pick color:</label>
+  <input type="range" min="1" max="4" value="1" [(ngModel)]="colorValue" (mousemove)="changeColor()">
+</div>
+
+<p class="output" [style.color]="color" >
+  This is a paragraph.
+</p>

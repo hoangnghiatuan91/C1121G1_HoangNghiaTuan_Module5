@@ -1,0 +1,21 @@
+<div>
+  <div class="input-group input-group-sm col-sm-12 m-0 p-0">Number 1
+    <input class="col-sm-12 form-control text-lg-right" type="number" [(ngModel)]="num1" >
+  </div>
+
+  <div class="input-group input-group-sm col-sm-12 m-0 p-0">Number 2
+    <input class="col-sm-12 form-control text-lg-right" type="number" [(ngModel)]="num2" >
+  </div>
+  <div class="input-group input-group-sm col-sm-12 m-0 p-0">Result
+    <input class="col-sm-12 form-control text-lg-right" type="text" readonly [(ngModel)]="result" >
+  </div>
+  <div class="col-sm-12 p-1 m-0">
+    <button class="btn btn-info col-sm-6" type="button" (click)="calculate(1)">+</button>
+    <button class="btn btn-info col-sm-6" type="button" (click)="calculate(2)">-</button>
+    <button class="btn btn-info col-sm-6" type="button" (click)="calculate(3)">/</button>
+    <button class="btn btn-info col-sm-6" type="button" (click)="calculate(4)">*</button>
+
+  </div>
+
+</div>
+
