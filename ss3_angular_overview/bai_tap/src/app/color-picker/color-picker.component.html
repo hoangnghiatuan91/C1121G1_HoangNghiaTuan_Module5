@@ -2,9 +2,22 @@
 
 <div>
   <label>Move to pick color:</label>
-  <input type="range" min="1" max="4" value="1" [(ngModel)]="colorValue" (mousemove)="changeColor()">
+  <input id="abc" type="range" min="1" max="4" value="1" [(ngModel)]="colorValue" (mousemove)="changeColor()" >
 </div>
 
 <p class="output" [style.color]="color" >
   This is a paragraph.
 </p>
+<!--<input type="hidden" id="hihi"  [(ngModel)]="color">-->
+<!--<script>-->
+<!--  function test() {-->
+<!--    let hihi = $("#hihi").val();-->
+<!--    console.log("hihi nè: ");-->
+<!--    console.log(hihi)-->
+<!--    window.onload(function (){-->
+<!--      $("#abc").on('mousemove',function () {-->
+<!--        $("body").css('background-color',hihi)-->
+<!--      })-->
+<!--    })-->
+<!--  }-->
+<!--</script>-->

@@ -12,146 +12,27 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
           rel="stylesheet"/>
+    <style>
+        .dropdown-menu li {
+            position: relative;
+        }
+        .dropdown-menu .dropdown-submenu {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: -7px;
+        }
+        .dropdown-menu .dropdown-submenu-left {
+            right: 100%;
+            left: auto;
+        }
+        .dropdown-menu > li:hover > .dropdown-submenu {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-<header>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <!-- Container wrapper -->
-        <div class="container-fluid">
-            <!-- Toggle button -->
-            <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <!-- Collapsible wrapper -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Navbar brand -->
-                <a class="navbar-brand mt-2 mt-lg-0" href="#">
-                    <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
-                         height="15"
-                         alt="MDB Logo"
-                         loading="lazy"/>
-                </a>
-                <!-- Left links -->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Customer</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Employee</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Service</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a
-                                class="nav-link dropdown-toggle"
-                                href="#"
-                                id="navbarDropdownMenuLink1"
-                                role="button"
-                                data-mdb-toggle="dropdown"
-                                aria-expanded="false"
-                        >
-                            Contract
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
-                            <li>
-                                <a class="dropdown-item" href="#">Create Contract</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Contract Details</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <!-- Left links -->
-            </div>
-            <!-- Collapsible wrapper -->
-
-            <!-- Right elements -->
-            <div class="d-flex align-items-center">
-                <!-- Icon -->
-                <a class="text-reset me-3" href="#">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-
-                <!-- Notifications -->
-                <div class="dropdown">
-                    <a
-                            class="text-reset me-3 dropdown-toggle hidden-arrow"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            role="button"
-                            data-mdb-toggle="dropdown"
-                            aria-expanded="false"
-                    >
-                        <i class="fas fa-bell"></i>
-                        <span class="badge rounded-pill badge-notification bg-danger">1</span>
-                    </a>
-                    <ul
-                            class="dropdown-menu dropdown-menu-end"
-                            aria-labelledby="navbarDropdownMenuLink"
-                    >
-                        <li>
-                            <a class="dropdown-item" href="#">Some news</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Another news</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="dropdown">
-                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow"
-                       href="#"
-                       id="navbarDropdownMenuAvatar"
-                       role="button"
-                       data-mdb-toggle="dropdown"
-                       aria-expanded="false">
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li>
-                            <a class="dropdown-item" href="#">My profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Settings</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- Background image -->
-    <div class="p-5 text-center bg-image"
-         style="
-      background-image: url('https://scontent.fdad3-5.fna.fbcdn.net/v/t39.30808-6/274181556_10161988079896151_2716674280379739820_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=e3f864&_nc_ohc=VfQxD77V5P8AX_q4_QQ&_nc_ht=scontent.fdad3-5.fna&oh=00_AT95H59Z5KD2v166TG1lrWzkOVkrYfM3YxH352ZCdRYPGg&oe=627832E6');
-      height: 100%;
-      width: 100%;
-      margin-top: 25px;
-    "
-    >
-        <div class="mask">
-            <div class="d-flex justify-content-center align-items-center h-100">
-                <div class="text-white">
-                    <h1 class="mb-3">FURAMA RESORT</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Background image -->
-</header>
+<div id="header"></div>
 
 <div class="container">
     <div class="row">
@@ -283,17 +164,27 @@
         </nav>
     </div>
 </div>
-<footer class="bg-light text-center text-lg-start">
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        &copy; 2022 Copyright:
-        <a class="text-dark" href="#">Furama Resort</a>
-    </div>
-</footer>
+
+<div id="footer"></div>
+
 </body>
 <!-- MDB -->
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+<script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.js"
+></script>
+<!-- AJAX -->
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+<script src="static/js/jquery-3.6.0.min.js"></script>
+<!-- JQUERY -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<!--  Modal -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script>
+    $(function(){
+        $("#header").load("templates/header.html");
+        $("#footer").load("templates/footer.html");
+    });
+</script>
 </html>
