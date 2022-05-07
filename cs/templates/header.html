@@ -27,8 +27,21 @@
                 </a>
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Customer</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                           href="#"
+                           id="navbarDropdownMenuLink3"
+                           role="button"
+                           data-mdb-toggle="dropdown"
+                           aria-expanded="false">Customer</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                            <li>
+                                <a class="dropdown-item" href="http://localhost:63342/cs/customer/customer-list.html">List Customer</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="http://localhost:63342/cs/customer/customer-create.html">Create Customer</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Employee</a>
@@ -86,10 +99,10 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
                             <li>
-                                <a class="dropdown-item" href="#">Create Contract</a>
+                                <a class="dropdown-item" href="http://localhost:63342/cs/contract/contract-list.html">List Contract</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Contract Details</a>
+                                <a class="dropdown-item" href="http://localhost:63342/cs/contract/contract-create.html">Create Contract</a>
                             </li>
                         </ul>
                     </li>
