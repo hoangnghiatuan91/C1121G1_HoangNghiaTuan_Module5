@@ -8,10 +8,14 @@ import {CustomerData} from '../customer-data';
   styleUrls: ['./customer-list.component.css']
 })
 export class CustomerListComponent implements OnInit {
-customerList: Customer[] = CustomerData.customerList
+customerList: Customer[] = CustomerData.customerList;
+  nameDelete: string;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  updateDeleteName(customerName: string) {
+    this.nameDelete = customerName;
+  }
 }
