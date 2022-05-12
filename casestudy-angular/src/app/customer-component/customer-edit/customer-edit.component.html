@@ -1,77 +1,98 @@
 <div class=" col-4 mx-auto">
-  <form>
+  <form [formGroup]="customerEditForm" (ngSubmit)="submit()">
     <div class="modal-body">
       <div class="form-group mb-4">
         <div class="form-outline">
-          <input type="text" id="customerCode" class="form-control" value="KH-0001"/>
+          <input type="text" id="customerCode" class="form-control" formControlName="customerCode" />
           <label class="form-label" for="customerCode">Mã khách hàng<span
             class="text-danger">(*)</span></label>
         </div>
-        <small class="text-danger"></small>
+        <div *ngIf="customerCode?.touched">
+          <small class="text-danger" *ngIf="customerCode?.errors?.required">Code cannot be empty.</small>
+          <small class="text-danger" *ngIf="customerCode?.errors?.pattern">Correct format: KH-XXXX.</small>
+        </div>
       </div>
       <div class="form-group mb-4">
         <div class="form-outline">
-          <input type="text" id="customerName" class="form-control" value="Hoàng Nghĩa Tuân"/>
+          <input type="text" id="customerName" class="form-control" formControlName="customerName"/>
           <label class="form-label" for="customerName">Họ Tên<span class="text-danger">(*)</span></label>
         </div>
-        <small class="text-danger"></small>
+        <div *ngIf="customerName?.touched">
+          <small class="text-danger" *ngIf="customerName?.errors?.required">Name cannot be empty.</small>
+          <small class="text-danger" *ngIf="customerName?.errors?.minlength">Name is at least 3 letters</small>
+        </div>
       </div>
 
       <label class="form-label" for="gender">Giới tính</label>
-      <select id="gender" class="form-control mb-4">
+      <select id="gender" class="form-control mb-4" formControlName="gender">
         <option selected>Nam</option>
-        <option >Nữ</option>
+        <option>Nữ</option>
         <option>Khác</option>
       </select>
 
       <div class="form-group mb-4">
         <div class="form-outline">
-          <input type="date" id="dayOfBirth" class="form-control" value="15/05/1991"/>
+          <input type="date" id="dayOfBirth" class="form-control" formControlName="dayOfBirth"/>
           <label class="form-label" for="dayOfBirth">Ngày sinh<span class="text-danger">(*)</span></label>
         </div>
-        <small class="text-danger"></small>
+        <div *ngIf="dayOfBirth?.touched">
+          <small class="text-danger" *ngIf="dayOfBirth?.errors?.required">Date cannot be empty.</small>
+          <!--          <small class="text-danger" *ngIf="dayOfBirth?.errors?.pattern">Correct format: dd/MM/yyyy.</small>-->
+        </div>
 
       </div>
       <div class="form-group mb-4">
         <div class="form-outline">
-          <input type="text" id="idCard" class="form-control" value="123456789"/>
+          <input type="text" id="idCard" class="form-control" formControlName="customerIdCard"/>
           <label class="form-label" for="idCard">Số CMND<span class="text-danger">(*)</span></label>
         </div>
-        <small class="text-danger"></small>
+        <div *ngIf="customerIdCard?.touched">
+          <small class="text-danger" *ngIf="customerIdCard?.errors?.required">Id card cannot be empty.</small>
+          <small class="text-danger" *ngIf="customerIdCard?.errors?.pattern">Correct format: XXXXXXXXX or XXXXXXXXXXXX.</small>
+        </div>
       </div>
       <div class="form-group mb-4">
         <div class="form-outline">
-          <input type="text" id="phoneNumber" class="form-control" value="0905419668"/>
+          <input type="text" id="phoneNumber" class="form-control" formControlName="customerPhone"/>
           <label class="form-label" for="phoneNumber">Số điện thoại<span
             class="text-danger">(*)</span></label>
         </div>
-        <small class="text-danger"></small>
+        <div *ngIf="customerPhone?.touched">
+          <small class="text-danger" *ngIf="customerPhone?.errors?.required">Phone cannot be empty.</small>
+          <small class="text-danger" *ngIf="customerPhone?.errors?.pattern">Correct format: 090xxxxxxx or 091xxxxxxx or (84)+90xxxxxxx or (84)+91xxxxxxx")</small>
+        </div>
       </div>
       <div class="form-group mb-4">
         <div class="form-outline">
-          <input type="text" id="email" class="form-control" value="tuanhn.91gmail.com"/>
+          <input type="text" id="email" class="form-control" formControlName="customerEmail"/>
           <label class="form-label" for="email">Email</label>
         </div>
-        <small class="text-danger"></small>
+        <div *ngIf="customerEmail?.touched">
+          <small class="text-danger" *ngIf="customerEmail?.errors?.required">Email cannot be empty.</small>
+          <small class="text-danger" *ngIf="customerEmail?.errors?.pattern">Not correct format</small>
+        </div>
       </div>
       <div class="form-group mb-4">
         <div class="form-outline">
-          <input type="text" id="address" class="form-control" value="14 Bình An 7"/>
+          <input type="text" id="address" class="form-control" formControlName="customerAddress"/>
           <label class="form-label" for="address">Địa chỉ</label>
         </div>
-        <small class="text-danger"></small>
+        <div *ngIf="customerAddress?.touched">
+          <small class="text-danger" *ngIf="customerAddress?.errors?.required">Email cannot be empty.</small>
+          <!--          <small class="text-danger" *ngIf="customerEmail?.errors?.pattern">Not correct format</small>-->
+        </div>
       </div>
 
       <label class="form-label" for="customerType">Loại</label>
-      <select id="customerType" class="form-control mb-4">
-        <option selected>Diamond</option>
+      <select id="customerType" class="form-control mb-4" formControlName="customerType">
+        <option>Diamond</option>
         <option>Silver</option>
         <option>Member</option>
       </select>
 
     </div>
     <div class="modal-footer">
-      <input type="submit" class="btn btn-success" value="Sửa"/>
+      <input [disabled]="!customerEditForm.valid" type="submit" class="btn btn-primary btn-block" value="Sửa"/>
     </div>
   </form>
 </div>
