@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "thuc-hanh-va-bai-tap"
+    }
+  },
+  "defaultProject": "thuc-hanh-va-bai-tap",
+  "cli": {
+    "analytics": false
+  }
 }

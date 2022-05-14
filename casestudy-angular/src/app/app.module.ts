@@ -18,6 +18,10 @@ import { CustomerEditComponent } from './customer-component/customer-edit/custom
 import {ContractListComponent} from './contract-component/contract-list/contract-list.component';
 import {ContractCreateComponent} from './contract-component/contract-create/contract-create.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ContractModule} from './contract-component/contract.module';
+import {RouterModule} from '@angular/router';
+import {ContractRoutingModule} from './contract-component/contract-routing.module';
+import {AppRoutingModule} from './app-routing.module';
 
 
 @NgModule({
@@ -35,16 +39,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     EditRoomComponent,
     CustomerListComponent,
     CustomerCreateComponent,
-    CustomerEditComponent,
-    ContractListComponent,
-    ContractCreateComponent,
-    ContractListComponent,
-    ContractCreateComponent
+    CustomerEditComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ContractModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
