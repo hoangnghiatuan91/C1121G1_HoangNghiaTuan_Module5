@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductService} from "../../service/product.service";
-import {Product} from "../../model/product";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {ProductService} from '../../service/product.service';
+import {Product} from '../../model/product';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -11,7 +11,9 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
   nameDelete: string;
-  idDelete: number
+  idDelete: number;
+  number: number;
+  totalPages: any;
 
   constructor(private productService: ProductService, private router: Router) {
   }
@@ -20,20 +22,36 @@ export class ProductListComponent implements OnInit {
     this.getAll();
   }
   getAll() {
-    this.products = this.productService.getAll();
+   this.productService.getAll().subscribe(products => {
+     this.products = products;
+   });
   }
 
   updateDeleteName(name: string, id: number) {
     this.nameDelete = name;
     this.idDelete = id;
   }
-  findById(id: number) {
-    return this.productService.findById(this.idDelete);
-  }
 
-  deleteProduct() {
-    this.productService.deleteProduct(this.idDelete);
-    console.log('hihi')
-    this.router.navigateByUrl('product/list')
-  }
+  // next() {
+  //   if (this.number < this.totalPages - 1) {
+  //     this.productService.getAll(this.number + 1).subscribe(
+  //       data => {
+  //         this.products = data.content;
+  //         this.number = data.number;
+  //         console.log(data);
+  //       }, err => console.log(err)
+  //     );
+  //   }
+  // }
+  // previous() {
+  //   if (this.number > 0) {
+  //     this.customerService.findAllCustomer(this.number - 1).subscribe(
+  //       data => {
+  //         this.customers = data.content;
+  //         this.number = data.number;
+  //         console.log(data);
+  //       }, err => console.log(err)
+  //     );
+  //   }
+  // }
 }

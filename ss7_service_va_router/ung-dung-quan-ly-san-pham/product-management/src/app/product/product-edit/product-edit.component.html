@@ -1,25 +1,45 @@
-<h1>Cập nhật thông tin sản phẩm</h1>
-<form [formGroup]="productForm" (ngSubmit)="updateProduct(id)">
-  <table>
-    <tr>
-      <td>Mã sản phẩm:</td>
-      <td><input type="number" formControlName="id"></td>
-    </tr>
-    <tr>
-      <td>Tên sản phẩm:</td>
-      <td><input type="text" formControlName="name"></td>
-    </tr>
-    <tr>
-      <td>Giá sản phẩm</td>
-      <td><input type="number" formControlName="price"></td>
-    </tr>
-    <tr>
-      <td>Mô tả về sản phẩm</td>
-      <td><input type="text" formControlName="description"></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td><button>Cập nhật</button></td>
-    </tr>
-  </table>
-</form>
+<h2>Cập nhật sản phẩm</h2>
+<div class="col-6">
+  <form [formGroup]="productForm" (ngSubmit)="updateProduct(id)" novalidate>
+    <div class="row mb-3">
+      <div class="col-4">
+        <label for="name" class="form-label">Tên sản phẩm: </label>
+      </div>
+      <div class="col-8">
+        <input type="text" class="form-control" id="name" formControlName="name" aria-describedby="nameError">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-4">
+        <label for="price" class="form-label">Giá sản phẩm: </label>
+      </div>
+      <div class="col-8">
+        <input type="text" class="form-control" id="price" formControlName="price" aria-describedby="priceError">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-4">
+        <label for="description" class="form-label">Mô tả sản phẩm: </label>
+      </div>
+      <div class="col-8">
+        <input type="text" class="form-control" id="description" formControlName="description" aria-describedby="descriptionError">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-4">
+        <label for="category" class="form-label">Danh mục</label>
+      </div>
+      <div class="col-8">
+        <select id="category" name="category" [compareWith]="compareFn" formControlName="category" aria-describedby="categoryError">
+          <option *ngFor="let c of categoryList" [ngValue]="c">{{c.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
+      </div>
+    </div>
+  </form>
+</div>

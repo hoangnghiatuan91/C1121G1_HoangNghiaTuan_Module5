@@ -1,42 +1,77 @@
-<h1>Danh sách sản phẩm</h1>
-<a routerLink="/product/create">Tạo mới sản phẩm</a>
-<table>
+<h1 style="text-align: center">Danh sách sản phẩm</h1>
+<!--<div style="display: flex; justify-content: center"><h1>Danh sách sản phẩm</h1></div>-->
+<a class="btn btn-outline-success" routerLink="/product/create">Tạo mới sản phẩm</a>
+<table class="table">
+  <thead>
   <tr>
-    <td>STT</td>
-    <td>Tên</td>
-    <td>Giá</td>
-    <td>Mô tả</td>
-    <td colspan="2"></td>
+    <td scope="col">STT</td>
+    <td scope="col">Tên</td>
+    <td scope="col">Giá</td>
+    <td scope="col">Mô tả</td>
+    <td scope="col">Danh mục</td>
+    <td scope="col" colspan="2"></td>
   </tr>
-  <tr *ngFor="let product of products; index as i">
-    <td>{{i + 1}}</td>
-    <td>{{product.name}}</td>
-    <td>{{product.price}}</td>
-    <td>{{product.description}}</td>
-    <td><a [routerLink]="['/product/edit',product.id]">Edit</a></td>
-    <td><a   type="button" class="btn btn-danger btn-sm btn-rounded delete_btn" data-mdb-toggle="modal"
-           data-mdb-target="#deleteModal" data-id="1" data-name="{{product.name}}"
-            (click)="updateDeleteName(product.name, product.id)">Delete</a></td>
-  </tr>
+  </thead>
+<tbody>
+<tr *ngFor="let product of products; index as i">
+  <td scope="row">{{i + 1}}</td>
+  <td>{{product.name}}</td>
+  <td>{{product.price}}</td>
+  <td>{{product.description}}</td>
+  <td>{{product.category.name}}</td>
+  <td><a [routerLink]="['/product/edit',product.id]"><i class="fa-solid fa-pen-to-square"></i> Edit</a></td>
+  <td><a  [routerLink]="['/product/delete',product.id]"><i class="fa-solid fa-trash-can" style="color: red"></i> Delete</a></td>
+</tr>
+</tbody>
+
 </table>
 
-<!-- Delete Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-        <input type="hidden" name="idDelete" id="idDelete">
-        <div class="modal-header">
-          <h5 class="modal-title">Xác nhận xóa</h5>
-          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Bạn chắc chắn muốn xóa sản phẩm <span class="text-danger" id="deleteName">{{nameDelete}}</span> ?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal" >Hủy</button>
-          <input (click)="deleteProduct()" type="submit" class="btn btn-danger" id="delete_btn" value="Đồng ý"/>
-        </div>
-    </div>
-  </div>
-</div>
+<!--&lt;!&ndash; Delete Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="deleteModal" tabindex="-1">-->
+<!--  <div class="modal-dialog">-->
+<!--    <div class="modal-content">-->
+<!--        <input type="hidden" name="idDelete" id="idDelete">-->
+<!--        <div class="modal-header">-->
+<!--          <h5 class="modal-title">Xác nhận xóa</h5>-->
+<!--          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>-->
+<!--        </div>-->
+<!--        <div class="modal-body">-->
+<!--          <p>Bạn chắc chắn muốn xóa sản phẩm <span class="text-danger" id="deleteName">{{nameDelete}}</span> ?</p>-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal" >Hủy</button>-->
+<!--          <input (click)="deleteProduct()" type="submit" class="btn btn-danger" id="delete_btn" value="Đồng ý"/>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--Pagination-->
+<!--<div class="d-flex flex-center">-->
+<!--  <nav class="mt-2" aria-label="...">-->
+<!--    <ul class="pagination">-->
+<!--      <li class="page-item">-->
+<!--        <a class="page-link" (click)="previous()">Previous</a>-->
+<!--      </li>-->
+<!--      <li class="page-item active" aria-current="page">-->
+<!--        <span class="page-link">{{number + 1}}</span>-->
+<!--      </li>-->
+<!--      <li class="page-item">-->
+<!--        <a class="page-link">{{totalPages}}</a>-->
+<!--      </li>-->
+<!--      <li class="page-item">-->
+<!--        <a class="page-link" (click)="next()">Next</a>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </nav>-->
+<!--</div>-->
+
+
+
+
+
+
+
+
+
+
 

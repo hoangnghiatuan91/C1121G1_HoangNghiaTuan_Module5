@@ -1,0 +1,76 @@
+{
+  "categories": [
+    {
+      "name": "Apple111eeeeee",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Samsung"
+    },
+    {
+      "name": "Oppo",
+      "id": 3
+    },
+    {
+      "name": "Xiaomi",
+      "id": 4
+    },
+    {
+      "name": "Nokia",
+      "id": 5
+    }
+  ],
+  "product": [
+    {
+      "name": "Iphone 13 Pro Maxxxx",
+      "price": "1200",
+      "description": "New 100%",
+      "category": {
+        "id": 1,
+        "name": "Apple"
+      },
+      "id": 1
+    },
+    {
+      "name": "Samsung Galaxy Z-flip",
+      "price": "500",
+      "description": "97%",
+      "category": {
+        "id": 2,
+        "name": "Samsung"
+      },
+      "id": 2
+    },
+    {
+      "name": "Iphone 11",
+      "price": "550",
+      "description": "99%",
+      "category": {
+        "id": 1,
+        "name": "Apple"
+      },
+      "id": 3
+    },
+    {
+      "id": 4,
+      "name": "Xiaomi Redmi Note 10 Pro",
+      "price": "1890",
+      "description": "New 100%",
+      "category": {
+        "name": "Xiaomi",
+        "id": 4
+      }
+    },
+    {
+      "id": 5,
+      "name": "Iphone 11",
+      "price": "650",
+      "description": "100%",
+      "category": {
+        "id": 1,
+        "name": "Apple"
+      }
+    }
+  ]
+}

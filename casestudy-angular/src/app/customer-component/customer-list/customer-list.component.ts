@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Customer} from '../customer';
-import {CustomerData} from '../customer-data';
+import {CustomerServiceService} from '../../service/customer-service.service';
 
 @Component({
   selector: 'app-customer-list',
@@ -8,13 +8,19 @@ import {CustomerData} from '../customer-data';
   styleUrls: ['./customer-list.component.css']
 })
 export class CustomerListComponent implements OnInit {
-customerList: Customer[] = CustomerData.customerList;
+// customerList: Customer[] = CustomerData.customerList;
+customerList: Customer[] = [];
   nameDelete: string;
-  constructor() { }
+  constructor(private customerServiceService: CustomerServiceService) { }
 
   ngOnInit(): void {
+    this.getAll();
   }
-
+  getAll() {
+    this.customerServiceService.getAll().subscribe(customerList => {
+      this.customerList = customerList.content;
+    });
+  }
   updateDeleteName(customerName: string) {
     this.nameDelete = customerName;
   }

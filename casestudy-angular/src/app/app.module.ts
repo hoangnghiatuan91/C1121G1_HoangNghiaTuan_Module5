@@ -22,6 +22,7 @@ import {ContractModule} from './contract-component/contract.module';
 import {RouterModule} from '@angular/router';
 import {ContractRoutingModule} from './contract-component/contract-routing.module';
 import {AppRoutingModule} from './app-routing.module';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -46,7 +47,7 @@ import {AppRoutingModule} from './app-routing.module';
     ReactiveFormsModule,
     FormsModule,
     ContractModule,
-    AppRoutingModule
+    AppRoutingModule, HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
