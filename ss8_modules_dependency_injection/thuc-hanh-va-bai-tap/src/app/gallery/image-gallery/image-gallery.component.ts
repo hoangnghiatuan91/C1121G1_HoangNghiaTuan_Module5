@@ -13,7 +13,9 @@ export class ImageGalleryComponent implements OnInit {
     'https://via.placeholder.com/1280x420/e91e63/ffffff?text=3',
     'https://via.placeholder.com/1280x420/e91e63/ffffff?text=4'];
   itemWidth: number;
+  index = 0;
   config = 4;
+  imgUrl: string;
   constructor(
     @Inject(GalleryConfig)
     @Optional()
@@ -27,5 +29,15 @@ export class ImageGalleryComponent implements OnInit {
   ngOnInit(): void {
     this.itemWidth = 100 / this.config;
   }
+  previous() {
+    if (this.index > 0) {
+      this.imgUrl = this.listImage[--this.index];
+    }
+  }
 
+  next() {
+    if (this.index < 3) {
+      this.imgUrl = this.listImage[++this.index];
+    }
+  }
 }
