@@ -13,16 +13,16 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let item of contractList">
-    <th>{{item.contractId}}</th>
+  <tr *ngFor="let item of contractList,index as i" >
+    <th>{{i+1}}</th>
     <th>{{item.contractCode}}</th>
     <th>{{item.startDate}}</th>
     <th>{{item.endDate}}</th>
     <th>{{item.contractDeposit}}</th>
     <th>{{item.total}}</th>
-    <th>{{item.employee}}</th>
-    <th>{{item.customer}}</th>
-    <th>{{item.service}}</th>
+    <th>{{item.employee.employeeName}}</th>
+    <th>{{item.customer.customerName}}</th>
+    <th>{{item.service.serviceName}}</th>
   </tr>
 
   </tbody>

@@ -1,3 +1,7 @@
+import {Employee} from './employee';
+import {Customer} from './customer';
+import {Service} from './service';
+
 export interface Contract {
   contractId: number;
   contractCode: string;
@@ -5,7 +9,7 @@ export interface Contract {
   endDate: string;
   contractDeposit: number;
   total: number;
-  employee: string;
-  customer: string;
-  service: string;
+  employee: Employee;
+  customer: Customer;
+  service: Service;
 }

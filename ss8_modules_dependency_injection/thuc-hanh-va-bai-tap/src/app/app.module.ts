@@ -3,12 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
-import {HttpClientModule} from '@angular/common/http';
-
-import {SharedModule} from './shared/shared.module';
+import {ImageGalleryModule} from "./gallery/image-gallery/image-gallery.module";
+import {GalleryConfig} from "./gallery/image-gallery/token";
 
 @NgModule({
   declarations: [
@@ -17,12 +13,11 @@ import {SharedModule} from './shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    SharedModule
+    ImageGalleryModule
   ],
-  providers: [],
+  providers: [
+    {provide: GalleryConfig, useValue: 3}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

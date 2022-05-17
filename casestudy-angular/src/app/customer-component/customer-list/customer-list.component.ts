@@ -18,6 +18,7 @@ customerList: Customer[] = [];
   }
   getAll() {
     this.customerServiceService.getAll().subscribe(customerList => {
+      // @ts-ignore
       this.customerList = customerList.content;
     });
   }
