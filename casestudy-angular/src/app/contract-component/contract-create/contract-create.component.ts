@@ -33,7 +33,7 @@ export class ContractCreateComponent implements OnInit {
     this.getServiceList();
     this.createContractForm = new FormGroup({
       contractCode: new FormControl('', [Validators.required, Validators.pattern('^(HD-)(\\d{4})$')]),
-      startDate: new FormControl('', [Validators.required]),
+      startDate: new FormControl('', [Validators.required, Validators.pattern('^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$')]),
       endDate: new FormControl('', [Validators.required]),
       contractDeposit: new FormControl('', [Validators.required, Validators.min(10000000)]),
       total: new FormControl('', [Validators.required, Validators.min(10000000)]),
@@ -60,6 +60,20 @@ export class ContractCreateComponent implements OnInit {
   }
   get total() {
     return this.createContractForm.get('total');
+  }
+  validateDate(){
+    let date1 = new Date(this.createContractForm.get('startDate').value);
+    let date2 = new Date(this.createContractForm.get('endDate').value);
+    if (date1.getTime() >= date2.getTime()){
+      this.createContractForm.get('endDate').setErrors({dateBeforeError: true});
+    }
+  }
+  validateCurrentDate(){
+    let current = new Date();
+    let date1 = new Date(this.createContractForm.get('startDate').value);
+    if (current.getTime() > date1.getTime()){
+      this.createContractForm.get('startDate').setErrors({dayStartError: true});
+    }
   }
   getCustomerList() {
     this.contractService.getCustomerList().subscribe((customers: Customer[]) => {

@@ -23,21 +23,20 @@
         </div>
       </div>
 
-      <label class="form-label" for="gender">Giới tính</label>
-      <select id="gender" class="form-control mb-4" formControlName="gender">
-        <option selected>Nam</option>
-        <option>Nữ</option>
-        <option>Khác</option>
+      <label class="form-label" for="customerGender">Giới tính</label>
+      <select id="customerGender" class="form-control mb-4" formControlName="customerGender">
+        <option selected [value]= 1 >Nam</option>
+        <option [value]= 0 >Nữ</option>
       </select>
 
       <div class="form-group mb-4">
         <div class="form-outline">
-          <input type="date" id="dayOfBirth" class="form-control" formControlName="dayOfBirth"/>
-          <label class="form-label" for="dayOfBirth">Ngày sinh<span class="text-danger">(*)</span></label>
+          <input type="date" id="customerBirthday" class="form-control" formControlName="customerBirthday"/>
+          <label class="form-label" for="customerBirthday">Ngày sinh<span class="text-danger">(*)</span></label>
         </div>
-        <div *ngIf="dayOfBirth?.touched">
-          <small class="text-danger" *ngIf="dayOfBirth?.errors?.required">Date cannot be empty.</small>
-<!--          <small class="text-danger" *ngIf="dayOfBirth?.errors?.pattern">Correct format: dd/MM/yyyy.</small>-->
+        <div *ngIf="customerBirthday?.touched">
+          <small class="text-danger" *ngIf="customerBirthday?.errors?.required">Date cannot be empty.</small>
+          <!--          <small class="text-danger" *ngIf="dayOfBirth?.errors?.pattern">Correct format: dd/MM/yyyy.</small>-->
         </div>
 
       </div>
@@ -48,7 +47,8 @@
         </div>
         <div *ngIf="customerIdCard?.touched">
           <small class="text-danger" *ngIf="customerIdCard?.errors?.required">Id card cannot be empty.</small>
-          <small class="text-danger" *ngIf="customerIdCard?.errors?.pattern">Correct format: XXXXXXXXX or XXXXXXXXXXXX.</small>
+          <small class="text-danger" *ngIf="customerIdCard?.errors?.pattern">Correct format: XXXXXXXXX or
+            XXXXXXXXXXXX.</small>
         </div>
       </div>
       <div class="form-group mb-4">
@@ -59,7 +59,8 @@
         </div>
         <div *ngIf="customerPhone?.touched">
           <small class="text-danger" *ngIf="customerPhone?.errors?.required">Phone cannot be empty.</small>
-          <small class="text-danger" *ngIf="customerPhone?.errors?.pattern">Correct format: 090xxxxxxx or 091xxxxxxx or (84)+90xxxxxxx or (84)+91xxxxxxx")</small>
+          <small class="text-danger" *ngIf="customerPhone?.errors?.pattern">Correct format: 090xxxxxxx or 091xxxxxxx or
+            (84)+90xxxxxxx or (84)+91xxxxxxx")</small>
         </div>
       </div>
       <div class="form-group mb-4">
@@ -79,17 +80,18 @@
         </div>
         <div *ngIf="customerAddress?.touched">
           <small class="text-danger" *ngIf="customerAddress?.errors?.required">Email cannot be empty.</small>
-<!--          <small class="text-danger" *ngIf="customerEmail?.errors?.pattern">Not correct format</small>-->
+          <!--          <small class="text-danger" *ngIf="customerEmail?.errors?.pattern">Not correct format</small>-->
         </div>
       </div>
 
       <label class="form-label" for="customerType">Loại</label>
       <select id="customerType" class="form-control mb-4" formControlName="customerType">
-        <option>Diamond</option>
-        <option>Silver</option>
-        <option>Member</option>
+        <option *ngFor="let ct of customerTypeList" [ngValue]="ct">{{ct.customerTypeName}}</option>
       </select>
 
+      <div>
+        <input type="hidden" formControlName="deleteFlag">
+      </div>
     </div>
     <div class="modal-footer">
       <input [disabled]="!customerCreateForm.valid" type="submit" class="btn btn-primary btn-block" value="Thêm mới"/>

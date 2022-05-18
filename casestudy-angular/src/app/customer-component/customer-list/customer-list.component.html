@@ -16,7 +16,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let item of customerList">
+  <tr  *ngFor="let item of customerList">
     <td>{{item.customerId}}</td>
     <td>{{item.customerCode}}</td>
     <td>{{item.customerName}}</td>
@@ -28,14 +28,14 @@
     <td>{{item.customerAddress}}</td>
     <td>{{item.customerType.customerTypeName}}</td>
     <td>
-      <a type="button" class="btn btn-link btn-sm btn-rounded edit_btn" href="customer-edit.html" >
+      <a type="button" class="btn btn-link btn-sm btn-rounded edit_btn" routerLink='/customer/edit/{{item.customerId}}'  >
         Sửa
       </a>
     </td>
     <td>
       <a type="button" class="btn btn-danger btn-sm btn-rounded delete_btn" data-mdb-toggle="modal"
          data-mdb-target="#deleteModal" data-id="1" data-name="{{item.customerName}}"
-         onclick="sendInfo($(this))" (click)="updateDeleteName(item.customerName)">
+          (click)="updateDeleteName(item.customerName,item.customerId)">
         Xóa
       </a>
     </td>
@@ -43,58 +43,46 @@
 
   </tbody>
 </table>
-<div class="container">
-  <div class="row">
-    <nav class=" mt-5 d-flex justify-content-center" aria-label="...">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#">Previous</a>
-        </li>
-        <li class="page-item active" aria-current="page">
-                  <span class="page-link">
-                    1
-                    <span class="visually-hidden">(current)</span>
-                  </span>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+
+<!--Pagination-->
+<div class="d-flex flex-center">
+  <nav class="mt-2" aria-label="...">
+    <ul class="pagination">
+      <li class="page-item">
+        <button class="page-link btn btn-primary" [disabled]="number <= 0" (click)="previous()">Previous</button>
+      </li>
+      <li class="page-item active" aria-current="page">
+        <span class="page-link">{{number + 1}}</span>
+      </li>
+      <li class="page-item">
+        <a class="page-link">{{totalPages}}</a>
+      </li>
+      <li class="page-item">
+        <button class="page-link btn btn-primary" [disabled]="number >= totalPages - 1" (click)="next()">Next</button>
+      </li>
+    </ul>
+  </nav>
 </div>
-<!-- Delete Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form>
-        <input type="hidden" name="idDelete" id="idDelete">
-        <div class="modal-header">
-          <h5 class="modal-title">Xác nhận xóa</h5>
-          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Bạn chắc chắn muốn xóa khách hàng <span class="text-danger" id="deleteName">{{nameDelete}}</span> ?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal" >Hủy</button>
-          <input type="submit" class="btn btn-danger" id="delete_btn" value="Đồng ý"/>
-        </div>
-      </form>
+
+  <!-- Delete Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <input type="hidden" name="idDelete" id="idDelete">
+          <div class="modal-header">
+            <h5 class="modal-title">Xác nhận xóa</h5>
+            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Bạn chắc chắn muốn xóa khách hàng <span class="text-danger" id="deleteName">{{nameDelete}}</span> ?</p>
+          </div>
+          <div class="modal-footer">
+            <button #closeModal type="button" class="btn btn-secondary" data-mdb-dismiss="modal" >Hủy</button>
+            <input type="submit" class="btn btn-danger" id="delete_btn" value="Đồng ý" (click)="delete(closeModal)"/>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- MDB -->
-<script>
-
-  function sendInfo(a) {
-    let id = a.attr('data-id');
-    let name = a.attr('data-name');
-    document.getElementById("idDelete").value = id;
-    document.getElementById("deleteName").innerText = name;
-  }
-</script>
