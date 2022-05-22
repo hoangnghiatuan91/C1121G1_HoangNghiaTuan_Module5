@@ -96,4 +96,15 @@ public class PostsController {
         this.postsService.save(posts);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @PatchMapping("/delete")
+    public ResponseEntity<Void> deletePosts(@RequestBody Posts posts) {
+
+        if (posts != null) {
+            posts.setDeleteFlag(true);
+            this.postsService.save(posts);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 }

@@ -14,8 +14,8 @@ export class PostsService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(area: number, price: number, directionName: string): Observable<Posts[]>{
-    return this.http.get<Posts[]>(API_URL + `/posts/list?area=${area}&price=${price}&directionName=${directionName}`);
+  getAll(page: number, area: number, price: number, directionName: string): Observable<Posts[]>{
+    return this.http.get<Posts[]>(API_URL + `/posts/list?page=${page}&area=${area}&price=${price}&directionName=${directionName}`);
   }
   getCategoryList(): Observable<Category[]>{
     return this.http.get<Category[]>(API_URL + '/posts/category');
@@ -34,7 +34,7 @@ export class PostsService {
     return this.http.post<Posts>(API_URL + '/posts/save', posts);
   }
   deletePosts(posts: Posts): Observable<Posts> {
-    return this.http.patch<Posts>(API_URL + '/delete', posts);
+    return this.http.patch<Posts>(API_URL + '/posts/delete', posts);
   }
   updatePosts( posts: Posts): Observable<Posts> {
     return this.http.put<Posts>(`${API_URL}/posts/update`, posts);

@@ -1,0 +1,13 @@
+<div>
+  <div class="form-group">
+    <label for="img">Chọn ảnh</label>
+    <div class="input-group">
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="img" formControlName="img" #fileUpload
+        (change)="onFileSelected($event)">
+        <label for="img" class="custom-file-label">Chọn ảnh</label>
+      </div>
+    </div>
+  </div>
+  <img [src]="imgSrc" alt="Ảnh" width="100" height="125" (click)="fileUpload.click()">
+</div>
