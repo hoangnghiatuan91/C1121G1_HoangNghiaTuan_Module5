@@ -1,0 +1,125 @@
+<div class=" col-4 mx-auto">
+  <form [formGroup]="postsEditForm" (ngSubmit)="updatePosts()">
+    <div class="modal-body">
+      <label class="form-label" for="category">Danh mục</label>
+      <select [compareWith]="compareCategory" id="category" class="form-control mb-4" formControlName="category">
+        <option *ngFor="let c of categoryList" [ngValue]="c">{{c.categoryName}}</option>
+      </select>
+
+      <label class="form-label" for="province">Vùng miền</label>
+      <select [compareWith]="compareProvince" id="province" class="form-control mb-4" formControlName="province">
+        <option *ngFor="let p of provinceList" [ngValue]="p">{{p.provinceName}}</option>
+      </select>
+
+      <div class="mb-3">
+        <label class="form-label" formControlName="seller">Bạn là</label> <br>
+        <input type="radio" value="Cá nhân" formControlName="seller"> Cá nhân
+        <input type="radio" value="Doanh nghiệp" formControlName="seller"> Doanh nghiệp
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" formControlName="typeOfPost">Bạn đăng tin</label> <br>
+        <input type="radio" value="Cần bán" formControlName="typeOfPost"> Cần bán
+        <input type="radio" value="Cần mua" formControlName="typeOfPost"> Cần mua
+        <input type="radio" value="Cho thuê" formControlName="typeOfPost"> Cho thuê
+        <input type="radio" value="Cần thuê" formControlName="typeOfPost"> Cần thuê
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" formControlName="condition">Tình trạng</label> <br>
+        <input type="radio" value="Mới" formControlName="condition"> Mới
+        <input type="radio" value="Đã sử dụng" formControlName="condition"> Đã sử dụng
+      </div>
+
+      <div class="form-group mb-4">
+        <div class="form-outline">
+          <input type="text" id="address" class="form-control" formControlName="address"/>
+          <label class="form-label" for="address">Địa chỉ<span
+            class="text-danger">(*)</span></label>
+        </div>
+        <div *ngIf="address?.touched">
+          <small class="text-danger" *ngIf="address?.errors?.required">Address cannot be empty.</small>
+        </div>
+      </div>
+
+      <div class="form-group mb-4">
+        <div class="form-outline">
+          <input type="text" id="area" class="form-control" formControlName="area"/>
+          <label class="form-label" for="area">Diện tích<span class="text-danger">(*)</span></label>
+        </div>
+        <div *ngIf="area?.touched">
+          <small class="text-danger" *ngIf="area?.errors?.required">Area cannot be empty.</small>
+          <small class="text-danger" *ngIf="area?.errors?.min">Area is min at least 20m2</small>
+        </div>
+      </div>
+
+      <label class="form-label" for="direction">Hướng</label>
+      <select [compareWith]="compareDirection" id="direction" class="form-control mb-4" formControlName="direction">
+        <option *ngFor="let d of directionList" [ngValue]="d">{{d.directionName}}</option>
+      </select>
+
+      <div class="form-group mb-4">
+        <div class="form-outline">
+          <input type="text" id="title" class="form-control" formControlName="title"/>
+          <label class="form-label" for="title">Tựa đề<span class="text-danger">(*)</span></label>
+        </div>
+        <div *ngIf="title?.touched">
+          <small class="text-danger" *ngIf="title?.errors?.required">Title cannot be empty.</small>
+        </div>
+
+      </div>
+      <div class="form-group mb-4">
+        <div class="form-outline">
+          <textarea type="text" id="content" class="form-control" formControlName="content"></textarea>
+          <label class="form-label" for="content">Nội dung<span class="text-danger">(*)</span></label>
+        </div>
+        <div *ngIf="content?.touched">
+          <small class="text-danger" *ngIf="content?.errors?.required">Content cannot be empty.</small>
+        </div>
+      </div>
+
+      <div class="form-group mb-4">
+        <div class="form-outline">
+          <input type="text" id="price" class="form-control" formControlName="price"/>
+          <label class="form-label" for="price">Giá<span
+            class="text-danger">(*)</span></label>
+        </div>
+        <div *ngIf="price?.touched">
+          <small class="text-danger" *ngIf="price?.errors?.required">Price cannot be empty.</small>
+          <small class="text-danger" *ngIf="price?.errors?.min">Price must be greater than 100.000.000</small>
+        </div>
+      </div>
+
+      <div class="form-group mb-4">
+        <div class="form-outline">
+          <input type="date" id="startDate" class="form-control" formControlName="startDate"/>
+          <label class="form-label" for="startDate">Ngày đăng<span
+            class="text-danger">(*)</span></label>
+        </div>
+        <div *ngIf="startDate.touched">
+          <small class="text-danger" *ngIf="startDate?.errors?.required">Start date cannot be empty.</small>
+          <small class="text-danger" *ngIf="startDate?.errors?.pattern">Correct format dd/MM/yyyy</small>
+        </div>
+      </div>
+
+      <div class="form-group mb-4">
+        <div class="form-outline">
+          <input type="text" id="status" class="form-control" formControlName="status"/>
+          <label class="form-label" for="status">Trạng thái<span
+            class="text-danger">(*)</span></label>
+        </div>
+        <div *ngIf="status.touched">
+          <small class="text-danger" *ngIf="status?.errors?.required">Status cannot be empty.</small>
+        </div>
+      </div>
+
+      <div>
+        <input type="hidden" formControlName="deleteFlag">
+      </div>
+
+      <div class="modal-footer">
+        <input [disabled]="postsEditForm.invalid" type="submit" class="btn btn-primary btn-block" value="Cập nhật"/>
+      </div>
+    </div>
+  </form>
+</div>

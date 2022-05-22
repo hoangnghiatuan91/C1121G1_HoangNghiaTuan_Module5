@@ -1,0 +1,100 @@
+<h1 style="text-align: center">DANH SÁCH TIN ĐĂNG</h1>
+<!--<div style="display: flex; justify-content: center"><h1>Danh sách sản phẩm</h1></div>-->
+<div class="row mb-4">
+  <div class="col" style="display: flex; justify-content: space-around">
+<!--    <a class="btn btn-outline-success col-3" routerLink="/posts/create">Tạo mới tin đăng</a>-->
+    <!--    <button type="button" class="btn btn-outline-danger me-3 col-3"-->
+    <!--            data-mdb-toggle="modal"-->
+    <!--            data-mdb-target="#modalDeleteMultiple" >-->
+    <!--      Xóa nhiều dữ liệu()-->
+    <!--    </button>-->
+  </div>
+</div>
+
+<nav class="navbar">
+  <div class="row mb-4">
+    <div class="col">
+      <div class="form-outline">
+        <input type="text" id="form6Example1" class="form-control" name="Diện tích" [(ngModel)]="areaSearch"/>
+        <label class="form-label" for="form6Example1">Diện tích</label>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-outline">
+        <input type="text" id="form6Example2" class="form-control" name="Giá" [(ngModel)]="priceSearch"/>
+        <label class="form-label" for="form6Example2">Giá</label>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-outline">
+        <input type="text" id="form6Example3" class="form-control" name="Hướng" [(ngModel)]="waySearch"/>
+        <label class="form-label" for="form6Example2">Hướng</label>
+      </div>
+    </div>
+    <div class="col">
+      <button class="btn btn-outline-success" (click)="searchMultiField()">Search</button>
+    </div>
+  </div>
+</nav>
+<table class="table">
+  <thead>
+  <tr>
+    <td scope="col">STT</td>
+    <td scope="col">Tiêu đề</td>
+    <td scope="col">Loại bài viết</td>
+    <td scope="col">Danh mục</td>
+    <td scope="col">Diện tích</td>
+    <td scope="col">Giá</td>
+    <td scope="col">Hướng</td>
+    <td scope="col">Ngày đăng</td>
+    <td scope="col">Trạng thái</td>
+    <td scope="col" colspan="2" style="text-align: center">Thao tác</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of postsList, index as i">
+    <td scope="row">{{i + 1}}</td>
+    <td>{{item.title}}</td>
+    <td>{{item.typeOfPost}}</td>
+    <td>{{item.category.categoryName}}</td>
+    <td>{{item.area}}</td>
+    <td>{{item.price}}</td>
+    <td>{{item.direction.directionName}}</td>
+    <td>{{item.startDate}}</td>
+    <td>{{item.status}}</td>
+
+    <td><a type="button" class="btn btn-warning btn-sm btn-rounded" routerLink="/posts/edit/{{item.id}}" ><i
+      class="fa-solid fa-pen-to-square"></i> Sửa</a></td>
+    <!--    <td><a [routerLink]="['/product/delete',product.id]"><i class="fa-solid fa-trash-can" style="color: red"></i> Delete</a>   </td>-->
+    <td><a type="button" class="btn btn-danger btn-sm btn-rounded delete_btn" data-mdb-toggle="modal"
+           data-mdb-target="#deleteModal" data-id="1" data-name="{{item.title}}"
+           (click)="updateDeleteName(item.title, item.id)">
+      <i class="fa-solid fa-trash-can"></i> Xóa
+    </a></td>
+
+
+  </tr>
+  </tbody>
+
+</table>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <input type="hidden" name="idDelete" id="idDelete">
+      <div class="modal-header">
+        <h5 class="modal-title">Xác nhận xóa</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn chắc chắn muốn xóa tin đăng <span class="text-danger" id="deleteName">{{nameDelete}}</span> ?</p>
+      </div>
+      <div class="modal-footer">
+        <button #closeModal type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Hủy</button>
+        <!--        <input (click)="deleteProduct(idDelete, closeModal)" type="submit" class="btn btn-danger" id="delete_btn"-->
+        <!--               value="Đồng ý"/>-->
+      </div>
+    </div>
+  </div>
+</div>

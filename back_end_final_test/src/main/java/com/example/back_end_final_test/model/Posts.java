@@ -1,22 +1,38 @@
 package com.example.back_end_final_test.model;
 
-public class Post {
+import javax.persistence.*;
+
+@Entity
+public class Posts {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne()
+    @JoinColumn(name = "categoryId", referencedColumnName = "id")
     private Category category;
+
+    @ManyToOne()
+    @JoinColumn(name = "provinceId", referencedColumnName = "id")
     private Province province;
     private String seller;
     private String typeOfPost;
     private String condition;
     private String address;
-    private String area;
+    private Double area;
+
+    @ManyToOne()
+    @JoinColumn(name = "directionId", referencedColumnName = "id")
     private Direction direction;
+
     private String title;
     private String content;
-    private String price;
+    private Double price;
     private String startDate;
     private String status;
+    private boolean deleteFlag;
 
-    public Post() {
+    public Posts() {
     }
 
     public Long getId() {
@@ -75,11 +91,11 @@ public class Post {
         this.address = address;
     }
 
-    public String getArea() {
+    public Double getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(Double area) {
         this.area = area;
     }
 
@@ -107,11 +123,11 @@ public class Post {
         this.content = content;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -129,5 +145,13 @@ public class Post {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public boolean isDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(boolean deleteFlag) {
+        this.deleteFlag = deleteFlag;
     }
 }
