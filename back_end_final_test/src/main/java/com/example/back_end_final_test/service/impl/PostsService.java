@@ -68,7 +68,7 @@ public class PostsService implements IPostService {
     }
 
     @Override
-    public Page<Posts> findAllPosts(Double area, Double price, String direction, Pageable pageable) {
-        return postsRepository.findALlPosts(area, price, direction, pageable);
+    public Page<Posts> findAllPosts(Double area, Double price, String direction, Pageable pageable, String sortValue) {
+        return postsRepository.findALlPosts(area, price, direction, pageable,sortValue);
     }
 }

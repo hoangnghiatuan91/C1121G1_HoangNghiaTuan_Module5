@@ -16,5 +16,5 @@ public interface IPostService extends IGeneralService<Posts> {
 
     List<Province> findAllProvince();
 
-    Page<Posts> findAllPosts( Double area, Double price, String direction, Pageable pageable);
+    Page<Posts> findAllPosts( Double area, Double price, String direction, Pageable pageable, String sortValue);
 }

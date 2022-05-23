@@ -14,8 +14,8 @@ export class PostsService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(page: number, area: number, price: number, directionName: string): Observable<Posts[]>{
-    return this.http.get<Posts[]>(API_URL + `/posts/list?page=${page}&area=${area}&price=${price}&directionName=${directionName}`);
+  getAll(page: number, area: number, price: number, directionName: string, sortValue ): Observable<Posts[]>{
+    return this.http.get<Posts[]>(API_URL + `/posts/list?page=${page}&area=${area}&price=${price}&directionName=${directionName}&sortValue=${sortValue}`);
   }
   getCategoryList(): Observable<Category[]>{
     return this.http.get<Category[]>(API_URL + '/posts/category');

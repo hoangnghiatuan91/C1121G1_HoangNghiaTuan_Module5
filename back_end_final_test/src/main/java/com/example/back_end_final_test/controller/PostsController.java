@@ -9,7 +9,9 @@ import com.example.back_end_final_test.service.IPostService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,30 +35,45 @@ public class PostsController {
     public ResponseEntity<Page<Posts>> list(@RequestParam(value = "area", defaultValue = "0.0", required = false) Double area,
                                             @RequestParam(value = "price", defaultValue = "0.0", required = false) Double price,
                                             @RequestParam(value = "directionName", defaultValue = "", required = false) String directionName,
-                                            @PageableDefault(size = 5) Pageable pageable){
-        Page<Posts> posts = this.postsService.findAllPosts(area,price,directionName,pageable);
-        return new ResponseEntity<>(posts,HttpStatus.OK);
+                                            Pageable pageable,
+                                            @RequestParam(value = "sortValue", defaultValue = "start_date", required = false) String sortValue) {
+//        Sort sort = Sort.by("startDate").ascending();
+//        switch (sortValue) {
+//            case "start_date desc":
+//                sort = Sort.by("startDate").descending();
+//                break;
+//            case "price asc":
+//                sort = Sort.by("price").ascending();
+//                break;
+//            case "price desc":
+//                sort = Sort.by("price").descending();
+//                break;
+//        }
+        Page<Posts> posts = this.postsService.findAllPosts(area, price, directionName, PageRequest.of(pageable.getPageNumber(),5),sortValue);
+
+        return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
     @GetMapping(value = "/category")
-    public ResponseEntity<List<Category>> listCategory(){
+    public ResponseEntity<List<Category>> listCategory() {
         List<Category> categories = this.postsService.findAllCategory();
-        return new ResponseEntity<>(categories,HttpStatus.OK);
+        return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
     @GetMapping(value = "/direction")
-    public ResponseEntity<List<Direction>> listDirection(){
+    public ResponseEntity<List<Direction>> listDirection() {
         List<Direction> directions = this.postsService.findAllDirection();
-        return new ResponseEntity<>(directions,HttpStatus.OK);
+        return new ResponseEntity<>(directions, HttpStatus.OK);
     }
 
     @GetMapping(value = "/province")
-    public ResponseEntity<List<Province>> listProvince(){
+    public ResponseEntity<List<Province>> listProvince() {
         List<Province> provinces = this.postsService.findAllProvince();
-        return new ResponseEntity<>(provinces,HttpStatus.OK);
+        return new ResponseEntity<>(provinces, HttpStatus.OK);
     }
+
     @PostMapping(value = "/save")
-    public ResponseEntity<Map<String,String>> create(@Valid @RequestBody PostsDto postsDto, BindingResult bindingResult){
+    public ResponseEntity<Map<String, String>> create(@Valid @RequestBody PostsDto postsDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Map<String, String> errorMap = bindingResult.getFieldErrors()
                     .stream().collect(Collectors.toMap(
@@ -64,7 +81,7 @@ public class PostsController {
             return new ResponseEntity<>(errorMap, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         Posts posts = new Posts();
-        BeanUtils.copyProperties(postsDto,posts);
+        BeanUtils.copyProperties(postsDto, posts);
         posts.setDeleteFlag(false);
         this.postsService.save(posts);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -78,12 +95,12 @@ public class PostsController {
             BeanUtils.copyProperties(posts, postsDto);
 
         }
-        return new ResponseEntity<>(postsDto,HttpStatus.OK);
+        return new ResponseEntity<>(postsDto, HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Map<String,String>> updateCustomer(@Valid @RequestBody PostsDto postsDto,
-                                                             BindingResult bindingResult) {
+    public ResponseEntity<Map<String, String>> updateCustomer(@Valid @RequestBody PostsDto postsDto,
+                                                              BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Map<String, String> errorMap = bindingResult.getFieldErrors()
                     .stream().collect(Collectors.toMap(

@@ -17,16 +17,17 @@ export class PostsListComponent implements OnInit {
   postsDelete: Posts;
   number = 0;
   totalPages = 0;
+  sortValue = 'start_date asc';
 
   constructor(private postsService: PostsService) {
   }
 
   ngOnInit(): void {
-    this.getAll(this.number, this.areaSearch, this.priceSearch, this.waySearch);
+    this.getAll(this.number, this.areaSearch, this.priceSearch, this.waySearch, this.sortValue);
   }
 
-  getAll(page, areaSearch, priceSearch, waySearch) {
-    this.postsService.getAll(page, areaSearch, priceSearch, waySearch).subscribe(postsList => {
+  getAll(page, areaSearch, priceSearch, waySearch, sortValue) {
+    this.postsService.getAll(page, areaSearch, priceSearch, waySearch, sortValue).subscribe(postsList => {
       // @ts-ignore
       this.postsList = postsList.content;
       console.log(postsList);
@@ -39,7 +40,7 @@ export class PostsListComponent implements OnInit {
   }
 
   searchMultiField() {
-    this.getAll(this.number, this.areaSearch, this.priceSearch, this.waySearch);
+    this.getAll(this.number, this.areaSearch, this.priceSearch, this.waySearch, this.sortValue);
   }
 
   deleteProduct(closeModal: HTMLButtonElement) {
@@ -53,7 +54,7 @@ export class PostsListComponent implements OnInit {
   }
   next() {
     if (this.number < this.totalPages - 1) {
-      this.postsService.getAll(this.number + 1, this.areaSearch, this.priceSearch, this.waySearch).subscribe(
+      this.postsService.getAll(this.number + 1, this.areaSearch, this.priceSearch, this.waySearch, this.sortValue).subscribe(
         data => {
           // @ts-ignore
           this.postsList = data.content;
@@ -66,7 +67,7 @@ export class PostsListComponent implements OnInit {
   }
   previous() {
     if (this.number > 0) {
-      this.postsService.getAll(this.number - 1, this.areaSearch, this.priceSearch, this.waySearch).subscribe(
+      this.postsService.getAll(this.number - 1, this.areaSearch, this.priceSearch, this.waySearch, this.sortValue).subscribe(
         data => {
           // @ts-ignore
           this.postsList = data.content;
@@ -76,6 +77,11 @@ export class PostsListComponent implements OnInit {
         }, err => console.log(err)
       );
     }
+  }
+
+  sort() {
+    this.getAll(this.number, this.areaSearch, this.priceSearch, this.waySearch, this.sortValue);
+    console.log(this.sortValue);
   }
 }
 

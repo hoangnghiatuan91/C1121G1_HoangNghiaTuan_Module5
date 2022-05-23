@@ -2,7 +2,7 @@
 <!--<div style="display: flex; justify-content: center"><h1>Danh sách sản phẩm</h1></div>-->
 <div class="row mb-4">
   <div class="col" style="display: flex; justify-content: space-around">
-<!--    <a class="btn btn-outline-success col-3" routerLink="/posts/create">Tạo mới tin đăng</a>-->
+    <!--    <a class="btn btn-outline-success col-3" routerLink="/posts/create">Tạo mới tin đăng</a>-->
     <!--    <button type="button" class="btn btn-outline-danger me-3 col-3"-->
     <!--            data-mdb-toggle="modal"-->
     <!--            data-mdb-target="#modalDeleteMultiple" >-->
@@ -34,6 +34,18 @@
     <div class="col">
       <button class="btn btn-outline-success" (click)="searchMultiField()">Search</button>
     </div>
+    <div class="col">
+      <label class="form-label">Sắp xếp theo</label>
+    </div>
+    <div class="col">
+      <select class="form-select" name="sortValue" id="" [(ngModel)]="sortValue" (change)="sort()">
+        <option value="start_date asc">Cũ nhất</option>
+        <option value="start_date desc">Mới nhất</option>
+        <option value="price asc">Giá tăng dần</option>
+        <option value="price desc">Giá giảm dần</option>
+      </select>
+    </div>
+
   </div>
 </nav>
 <table class="table">
@@ -63,7 +75,7 @@
     <td>{{item.startDate}}</td>
     <td>{{item.status}}</td>
 
-    <td><a type="button" class="btn btn-warning btn-sm btn-rounded" routerLink="/posts/edit/{{item.id}}" ><i
+    <td><a type="button" class="btn btn-warning btn-sm btn-rounded" routerLink="/posts/edit/{{item.id}}"><i
       class="fa-solid fa-pen-to-square"></i> Sửa</a></td>
     <!--    <td><a [routerLink]="['/product/delete',product.id]"><i class="fa-solid fa-trash-can" style="color: red"></i> Delete</a>   </td>-->
     <td><a type="button" class="btn btn-danger btn-sm btn-rounded delete_btn" data-mdb-toggle="modal"
@@ -71,8 +83,6 @@
            (click)="updateDeleteName(item.title, item.id)">
       <i class="fa-solid fa-trash-can"></i> Xóa
     </a></td>
-
-
   </tr>
   </tbody>
 
@@ -112,9 +122,10 @@
       </div>
       <div class="modal-footer">
         <button #closeModal type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Hủy</button>
-                <input (click)="deleteProduct(closeModal)" type="submit" class="btn btn-danger" id="delete_btn"
-                       value="Đồng ý"/>
+        <input (click)="deleteProduct(closeModal)" type="submit" class="btn btn-danger" id="delete_btn"
+               value="Đồng ý"/>
       </div>
     </div>
   </div>
 </div>
+
